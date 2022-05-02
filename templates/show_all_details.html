@@ -1,0 +1,29 @@
+<html>
+<head><title>核酸检测结果详细信息</title>
+</head>
+<body>
+<a href="/steps">返回首页</a>
+<p>----------------------核酸检测结果详细信息--------------------------</p>
+<table border="2">
+ <thead>
+  <tr>
+	<th>学生姓名</th>
+	<th>亲属姓名</th>
+	<th>检测时间</th>
+	<th>检测结果</th>
+  </tr>
+ </thead>
+ <tbody>
+  {% for student in all_students %}
+	<tr>
+	<td>{{ student.student_name }}</td>
+	<td>{{ student.family_name }}</td>
+	<td>{{ student.inspection_time }}</td>
+	<td>{{ student.inspection_result }}</td>
+	<tr>
+  {% endfor %}
+ </tbody>
+</table>
+
+</body>
+</html>

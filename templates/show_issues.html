@@ -1,0 +1,50 @@
+<html>
+<head><title>核酸检测结果异常汇总</title>
+</head>
+<body>
+<a href="/steps">返回首页</a>
+<p>----------------------核酸检测结果异常汇总--------------------------</p>
+{% if no_result_students.exists %}
+<table border="2">
+  <tr>
+    <th>学生或其家属核酸结果未出名单</th>
+  </tr>
+  {% for student in no_result_students %}
+  <tr>
+    <td>{{ student.student_name }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endif %}
+
+{% if with_star_students.exists %}
+<table border="2">
+  <tr>
+    <th>学生或其家属行程码带星</th>
+  </tr>
+  {% for student in with_star_students %}
+  <tr>
+    <td>{{ student.student_name }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endif %}
+
+
+{% if time_incorrect_students.exists %}
+<table border="2">
+  <tr>
+    <th>学生或其家属核酸检测时间不符合规定时间</th>
+  </tr>
+  {% for student in time_incorrect_students %}
+  <tr>
+    <td>{{ student.student_name }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endif %}
+	<!--<td>学生或其家属行程码时间不符合规定时间</td><td>此部分暂时无法从图片中提取数据</td>
+	<td>学生或其家属核酸结果中存在重复数据</td><td>{{ duplicate_data_students.student_name }}</td>-->
+  </tr>
+</body>
+</html>

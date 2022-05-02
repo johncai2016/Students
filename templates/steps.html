@@ -1,0 +1,32 @@
+<html>
+<head></head>
+<body>
+<p>第一步:上传压缩文件(zip文件),快慢主要取决于你的网络的上传速度，从10秒到几分钟不等。</p>
+<form enctype="multipart/form-data" action="/upload_zipFile/" method="post">
+  <input type="file" name="myfile"/>
+  <br/>
+  <input type="submit" value="上传文件" />
+</form>
+<p>第二步:开始检测</p>
+<form  action="/process_students_data" method="get">
+  <input type="submit" value="开始" />点击开始从截图中提取学生信息(48个学生,每个学生4个截图，大概需要15分钟左右)
+</form>
+<p>第三步: 查看异常数据</p>
+<a href='/show_issues?query_time={{ query_time }}'>查看异常数据</a>
+<br>
+<p>第四步: 删除数据</p>
+<a href='/delete_info'>删除数据</a>
+<br><br><br>
+<p>-------以下为可选功能--------</p>
+<a href='/show_details'>查看所有学生和同住人员的核酸结果</a><br></br>
+<a href='/show_route_details'>查看所有学生和同住人员的行程码</a><br><br>
+<p>如果想对比同住人员核酸数量，请按下面的步骤</p>
+<p>上传excel文件</p>
+<form enctype="multipart/form-data" action="/upload_excelFile/" method="post">
+  <input type="file" name="myfile"/>
+  <br/>
+  <input type="submit" value="上传文件" />
+</form>
+<a href='/check_family_number'>核对同住成员数量</a>
+</body>
+</html>
