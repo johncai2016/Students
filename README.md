@@ -24,32 +24,18 @@
    <p>a.在setting中设置ALLOWED_HOSTS = ['你的阿里云公网IP','localhost','127.0.0.1','0.0.0.0:80']</p>
    <p>b.nohub python3 manage.py runserver 0.0.0.0:80 & </p>
    <p>c.检查安全组策略(也就是防火墙规则要放行对应的端口)</p>
-   <p>3.文件夹或者文件解压后乱码的问题,可以通过下面的代码解决</p>
+   <p>3.文件夹或者文件解压后乱码的问题,可以通过下面的代码解决,因为发现在win10和ubuntu下需要使用不同的代码，所有干脆就用了try except</p>
    <p>try:
        new_name = old_name.encode('cp437').decode('gbk') </p>
    <p>except:
        new_name = old_name.encode('utf-8').decode('utf-8') </p>
    <p>4.linux下目录是通过'/',但是windows是'\'</p>
    <p>5.图片无法显示的问题</p>
-   <p>在urls.py中记得要添加
-   from django.conf.urls.static import static
-   from django.conf import settings
-   urlpatterns = [
-    path('upload_zipFile/', views.upload_zipFile),
-    path('upload_excelFile/',views.upload_excelFile),
-    path('',views.index),
-    path('show_issues',views.show_issues),
-    path('show_details',views.show_details),
-    path('show_route_details',views.show_route_details),
-    path('check_family_number',views.check_family_number),
-    path('delete_info',views.delete_info),
-    path('process_students_data',views.process_students_data),
-    path('steps',views.steps),
-    path('test',views.test),
-    path('remove_expire_data',views.remove_expire_data),
-    path('how_to_export_zip',views.how_to_export_zip),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-   </p> 
+   <p>发现django的图片显示要开启debug=True,所以想了个偷懒的方法，把代码上传到‘语雀’中再通过引用URL即可。在'语雀'中新建一个文件，然后插入图片上去，右键找到图片链接的url即可</p>
+   <p>6. 图片识别速度太慢的问题</p>
+   <p>用pytesseract,在阿里云上(1核2G内存，即使只是单线程去遍历读取每张图片，发现CPU很快就会达到接近100%,所以导致无法使用多线程，而且因为CPU使用过高，导致整体处理速度很慢(48个学生，每个学生只包含4张截图，就要耗掉差不多15分钟</p>
+   <p>用baidu ocr API,好处是图片文字识别率高，占用CPU低，但是调用量有限制，超过要收费</p>
+   <p>我把baidu API和开源的pytesseract识别的图片都做了些处理，后面对于识别到的文字处理逻辑是一样的</p>
    <p><b>特别感谢:</b></p>
    <p>@小黑的帮忙，我遇到的很多问题不懂都是请教@小黑大佬的，谢谢他告诉我django这个框架,用起来真的很方便,也谢谢他帮我画的流程图，代码基本按这个流程写的(除了下载PDF这部分)</p>
    ![image](https://user-images.githubusercontent.com/23047196/165004913-829a1c89-c02b-4691-807f-4a6eb31ce804.png)
