@@ -1,0 +1,37 @@
+"""student URL Configuration
+
+The `urlpatterns` list routes URLs to views. For more information please see:
+    https://docs.djangoproject.com/en/4.0/topics/http/urls/
+Examples:
+Function views
+    1. Add an import:  from my_app import views
+    2. Add a URL to urlpatterns:  path('', views.home, name='home')
+Class-based views
+    1. Add an import:  from other_app.views import Home
+    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
+Including another URLconf
+    1. Import the include() function: from django.urls import include, path
+    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
+"""
+from django.contrib import admin
+from django.urls import path
+from student import views
+from django.conf.urls.static import static
+from django.conf import settings
+
+urlpatterns = [
+    path('upload_zipFile/', views.upload_zipFile),
+    path('upload_excelFile/',views.upload_excelFile),
+    path('',views.index),
+    path('show_issues',views.show_issues),
+    path('show_details',views.show_details),
+    path('show_route_details',views.show_route_details),
+    path('check_family_number',views.check_family_number),
+    path('delete_info',views.delete_info),
+    path('process_students_data',views.process_students_data),
+    path('steps',views.steps),
+    path('test',views.test),
+    path('remove_expire_data',views.remove_expire_data),
+    path('how_to_export_zip',views.how_to_export_zip),
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
