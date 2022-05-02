@@ -132,9 +132,9 @@ def steps(request):
     return HttpResponse(template.render(context,request))
   
 def extract_data_from_img_by_baidu(file_name):
-    APP_ID = '26079776'
-    API_KEY = 'wYLkGqL1CXhRyu9Dd7keASgD'
-    SECRET_KEY = 'ZdPSGPSG8m4XUfN1alDDUIlWFAEPHeWr'
+    APP_ID = ''
+    API_KEY = ''
+    SECRET_KEY = ''
     client = AipOcr(APP_ID, API_KEY, SECRET_KEY)
     img_text = ''
     with open(file_name, 'rb') as fp:
